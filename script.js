@@ -2,10 +2,10 @@ const entryInput = document.getElementById('entry-input');
 const saveBtn = document.getElementById('save-btn');
 const entriesContainer = document.getElementById('entries-container');
 
-// Carregar registros ao abrir a página
+
 document.addEventListener('DOMContentLoaded', displayEntries);
 
-// Função para salvar novo registro
+
 saveBtn.addEventListener('click', () => {
     const text = entryInput.value;
     if (text.trim() === "") return alert("Escreva algo antes de entrar no vazio.");
@@ -14,18 +14,18 @@ saveBtn.addEventListener('click', () => {
     entries.push({ text: text, date: new Date().toLocaleString() });
     
     localStorage.setItem('fragments', JSON.stringify(entries));
-    entryInput.value = ""; // Limpa o campo
+    entryInput.value = ""; 
     displayEntries();
 });
 
-// Função para exibir os registros na tela
+
 function displayEntries() {
     const entries = JSON.parse(localStorage.getItem('fragments')) || [];
-    entriesContainer.innerHTML = ""; // Limpa a lista para atualizar
+    entriesContainer.innerHTML = ""; 
 
     entries.forEach((entry, index) => {
         const entryDiv = document.createElement('div');
-        entryDiv.classList.add('entry-card'); // Você pode estilizar essa classe no CSS
+        entryDiv.classList.add('entry-card'); 
 
         entryDiv.innerHTML = `
             <p>${entry.text}</p>
@@ -37,16 +37,15 @@ function displayEntries() {
     });
 }
 
-// Função para deletar um registro específico
 function deleteEntry(index) {
     let entries = JSON.parse(localStorage.getItem('fragments')) || [];
     
-    // Remove o item do array pelo índice
+    
     entries.splice(index, 1);
     
-    // Salva a nova lista (sem o item) no localStorage
+    // local storage
     localStorage.setItem('fragments', JSON.stringify(entries));
     
-    // Renderiza a lista atualizada
+    
     displayEntries();
 }
